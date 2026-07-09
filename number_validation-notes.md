@@ -41,51 +41,64 @@ eg.
 - checks if value is NaN
 
 ### clarification
-: don't worry too much about this step but the 
+- don't worry too much about this step but the 
 reason is because NaN is _based on js specification_ a number type'
-: checking if it's a Number type is the first gate before it is 
+- checking if it's a Number type is the first gate before it is 
 confirmed as a NaN
-:: basically it goes **straight to checking NaN** as it's checking if it's 
+- basically it goes **straight to checking NaN** as it's checking if it's 
 NaN
 
-```
-value 
-(->is a number type ->yes ->->) check NaN ->->->(A) value returns `NaN` -> `true`
-9->is a number type ->yes ->->) check NaN ->->->(B) value returns any number 
-other than  NaN -> `false`
+	`value (->is a number type ->yes ->->) check NaN ->->->(A) value `
+	returns `NaN` -> `true`
+	
+	`->is a number type ->yes ->->) check NaN ->->->(B) value returns any number `
+ other than  NaN -> `false`
+	
+	`->is a number type ->no -> `false`
 
-->is a number type ->no -> `false` 
-```
 
 ### True if...
 1. value is NaN
 eg.
-// NaN returns true for math errors 
-NaN // outputs true 
-`"abc" / 2` // outputs NaN
-`NaN + "any number"` //outputs NaN
+ 
+`NaN`  // outputs true 
+
+`"abc" / 2`  // outputs NaN
+
+`NaN + "any number"`  //outputs NaN
 
 ### False if...
 1.value is a number (other than NaN)
 `123` // outputs true
 
 2.value is any type other than a number
-`abc` // string outputs false
-`""123abc""` // string outputs false
-`"abc"` // string outputs false
-`null` // false // null is not NaN
-`""` // false // empty string is not NaN
+
+`abc`		// string outputs false
+
+`"123abc"` 	// string outputs false
+
+`"abc"` 	// string outputs false
+
+`null` 	// false, null is not NaN
+
+`""` 	// false, empty string is not NaN
 
 ## When to use
 1.  validate:
-- NaN // any value which is a number, string or other type but is not 
+
+- `NaN` 
+
+// any value which is a number, string or other type but is not 
 NaN
+
 // NaN usually returns for math errors
+
 // use Number.isNaN to catch these math errors
+
 2. _catch_ math errors
 // NaN returns true for math errors 
 // use Numbers.isNaN to catch those errors
-2. validate NOT:
+3. validate NOT:
 - number
 - string cotaining non-numbers
 - string containing only numbers 
