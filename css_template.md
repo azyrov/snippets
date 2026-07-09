@@ -1,0 +1,137 @@
+/* 2.0 */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: #F2E9E9;
+  font-family: Tahoma, Verdana, sans-serif;
+  padding: 10px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-bottom: 1em;
+}
+
+h1 {
+  font-size: 2.986rem;
+}
+
+h2 {
+  font-size: 2.488rem;
+}
+
+h3 {
+  font-size: 2.074rem;
+}
+
+h4 {
+  font-size: 1.728rem;
+}
+
+h5 {
+  font-size: 1.44rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  border: 2px solid lightgreen;
+  padding: 0.5em 1em;
+}
+
+li {
+  list-style: none;
+}
+
+.nav-item--logo, 
+.nav-item--link--one,
+.nav-item--link--two,
+.nav-item--link--three,
+.nav-item--link--four {
+}
+
+.nav-item--logo {
+  margin-right: auto;
+}
+------------------------------------------------------------------------
+/* 1.0 */
+* {
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  line-height: 1.5;
+  background-color: rgba(211, 211, 211, 1);
+  padding: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+} 
+
+h1 {
+  font-size: 2.986rem;
+}
+
+h2 {
+  font-size: 2.488rem;
+}
+
+h3 {
+  font-size: 2.074rem;
+}
+
+h4 {
+  font-size: 1.728rem;
+}
+
+h5 {
+  font-size: 1.44rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+ 
+p {
+  font-size: 1rem;
+}
+
+p:first-of-type {
+  background-color: rgba(255, 0, 0, 0.2);
+  line-height: 1.5;
+}
+
+p:nth-of-type(2) {
+  background-color: rgba(0,255,0, 0.2);
+}
+
+p:nth-of-type(3) {
+  background-color: rgba(0, 0, 255, 0.2);
+}

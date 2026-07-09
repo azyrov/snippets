@@ -1,0 +1,125 @@
+ HUBTEL SETUP
+
+pnpm init
+
+## create the template
+pnpm create next-app . --typescript --tailwind --eslint
+pnpm add lucide-react @supabase/supabase-js axios
+
+## create .env.local
+touch .env.local
+
+## add env variables to .env.local
+# Hubtel Credentials (Corrected)
+HUBTEL_CLIENT_ID=[find this in the hubtel dashboard]
+HUBTEL_CLIENT_SECRET=[find this in the hubtel dashboard]
+# Supabase Credentials
+NEXT_PUBLIC_SUPABASE_URL=[find this at the supabase project overview]
+NEXT_PUBLIC_SUPABASE_ANON_KEY=[find this at the supabase project overview]
+
+## create verification table at supabase
+CREATE TABLE public.verifications (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  phone_number TEXT NOT NULL,
+  otp_code TEXT NOT NULL,
+  is_verified BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  expires_at TIMESTAMPTZ DEFAULT (now() + interval '5 minutes')
+);
+
+## provide special RLS privileges for the website
+-- 1. Turn on the Security Guard
+ALTER TABLE public.verifications ENABLE ROW LEVEL SECURITY;
+-- 2. Allow the website to "Insert" (add) new numbers
+CREATE POLICY "Allow public insert" ON public.verifications 
+FOR INSERT WITH CHECK (true);
+-- 3. Allow the website to "Select" (find) codes to check them
+CREATE POLICY "Allow public select" ON public.verifications 
+FOR SELECT USING (true);
+
+## create supabase.ts file
+touch lib/supabase.ts
+
+## add content to supabase.ts
+import { createClient } from '@supabase/supabase-js'
+// Using the '!' operator to tell TypeScript the environment variables ARE present
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+// Create the Supabase client
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+## create route file for send-sms
+mkdir -p app/api/send-sms
+touch app/api/send-sms/route.ts
+# 1. Create the folder path for the API
+mkdir -p app/api/send-sms
+
+# 2. Create the route.ts file
+cat << 'EOF' > app/api/send-sms/route.ts
+import { NextResponse } from 'next/server'
+import { supabase } from '@/lib/supabase'
+import axios from 'axios'
+
+export async function POST(request: Request) {
+  try {
+    const { phoneNumber } = await request.json()
+    
+    // 1. Generate the 6-digit code
+    const otpCode = Math.floor(100000 + Math.random() * 900000).toString()
+
+    // 2. The Hubtel Handshake (Matching your specific API URL format)
+    await axios.get('https://smsc.hubtel.com/v1/messages/send', {
+      params: {
+        clientid: process.env.HUBTEL_CLIENT_ID,
+        clientsecret: process.env.HUBTEL_CLIENT_SECRET,
+        from: 'Fortunate',
+        to: phoneNumber,
+        content: `Your verification code is: ${otpCode}`
+      }
+    })
+
+    // 3. Save to our Supabase Vault
+    const { error: dbError } = await supabase
+      .from('verifications')
+      .insert([{ phone_number: phoneNumber, otp_code: otpCode }])
+
+    if (dbError) throw dbError
+
+    return NextResponse.json({ success: true })
+  } catch (error: any) {
+    // This will help us see if the error is from Hubtel or Supabase
+    console.error('CRITICAL ERROR:', error.response?.data || error.message)
+    return NextResponse.json({ success: false, error: 'Failed to send' }, { status: 500 })
+  }
+}
+EOF
+
+## create route file for verify-otp
+import { NextResponse } from 'next/server'
+import { supabase } from '@/lib/supabase'
+
+export async function POST(request: Request) {
+  try {
+    const { phoneNumber, otpCode } = await request.json()
+
+    // 1. Look in the 'verifications' table for a match
+    const { data, error } = await supabase
+      .from('verifications')
+      .select('*')
+      .eq('phone_number', phoneNumber)
+      .eq('otp_code', otpCode)
+      .order('created_at', { ascending: false })
+      .limit(1)
+
+    // 2. The Verification Check
+    if (error || !data || data.length === 0) {
+      return NextResponse.json({ success: false, error: 'Invalid or expired code' }, { status: 400 })
+    }
+
+    // 3. Success! The code matches.
+    return NextResponse.json({ success: true, message: 'Verified successfully!' })
+
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 })
+  }
+}

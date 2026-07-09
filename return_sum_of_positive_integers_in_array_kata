@@ -1,0 +1,24 @@
+// store sum in sum variable
+// use for loop to loop through the numbers
+// nest IF the array[index] is less than 0, continue
+// nest ELSE we use += to add consecutive positive numbers
+// return sum to positiveSum
+//i sum is returned utside the for loop to collect the accumulated sum value 
+
+function positiveSum(arr) {
+    let sum = 0;
+
+    for (let i = 0; i < arr.length; ++i) {
+        if  (arr[i] < 0) {
+            continue;
+        } else {
+            sum += arr[i];
+        }
+        
+    }
+
+    return sum;
+}
+
+
+console.log(positiveSum([-1,2,3,4,-5]));

@@ -1,0 +1,8 @@
+LOCAL DIRECTORY
+git add -> STAGING AREA
+
+STAGING AREA
+git commit -> LOCAL REPO
+
+LOCAL REPO
+git push -> REMOTE REPO
