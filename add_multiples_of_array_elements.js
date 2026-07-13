@@ -1,19 +1,13 @@
-array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    
-let arr = array.filter(x => (x % 2 === 0)).map(x => x * 3);
-
-console.log(arr);
-
 /***/
-// function sumOfTripledEvens(arr) {
-//   return arr.filter(x => (x % 2 === 0))
-//   .map(x => (x * 3))
-//   .reduce((a, b) => a + b, 0);
-// }
+function sumOfTripledEvens(arr) {
+  return arr.filter(x => (x % 2 === 0))
+  .map(x => (x * 3))
+  .reduce((a, b) => a + b, 0);
+}
 
-// let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-// console.log(sumOfTripledEvens(array));
+console.log(sumOfTripledEvens(array));
 
 /***/
 // function sumOfTripledEvens(arr) {
