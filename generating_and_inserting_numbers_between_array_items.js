@@ -25,7 +25,6 @@ for(let i = 0; i < arr.length -1; i++) {
         newArray.push(newElement + 0.5);
     }
 
-    // newArray.push(nextValue);
     newArray.push(arr[arr.length -1])
 }
 
