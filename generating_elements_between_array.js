@@ -80,3 +80,4 @@ let validatePositiveInteger = (array) => {
 console.log(sumAll(1, 3, 5));
 
 
+j
