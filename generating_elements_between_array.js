@@ -1,22 +1,24 @@
-// function sumAll(min, max) {
-//     if ((!(Number.isInteger(min))) || (!(Number.isInteger(max)))) return "ERROR"
-//     if ((min < 0) || (max < 0)) return "ERROR"
-//     if (min > max) {
-//         const temp = min;
-//         min = max;
-//         max = temp;
-//     }
+function sumAll(min, max) {
+    if ((!(Number.isInteger(min))) || (!(Number.isInteger(max)))) return "ERROR"
+    if ((min < 0) || (max < 0)) return "ERROR"
+    [max, min] = [min, max];
+    // lines above replaces entire if block below
+    // // if (min > max) {
+    // //     const temp = min;
+    // //     min = max;
+    // //     max = temp;
+    // // }
 
-//     let sum = 0;
+    let sum = 0;
 
-//     for (let i = 0; i <= max; i++) {
-//         sum += i;
-//     }
+    for (let i = 0; i <= max; i++) {
+        sum += i;
+    }
 
-//     return sum
-// }
+    return sum
+}
 
-// console.log(sumAll(1, 3, 5))
+console.log(sumAll(1, 3, 5))
 
 // sort 2 elements of array into ascending order
 // create new array to hold new elements
