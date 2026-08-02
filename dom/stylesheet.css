@@ -1,0 +1,7 @@
+body {
+    background-color: yellow;
+}
+
+#container > .display {
+    background-color: blue;
+}

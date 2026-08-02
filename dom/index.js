@@ -1,0 +1,169 @@
+const container = document.querySelector("#container");
+const display = container.querySelector(".display");
+const nodes = container.childNodes;
+
+// changing the content a comment
+// the html will not change though
+// const updateComment = container.childNodes[0];
+// if (updateComment.nodeType === 8) {
+//     updateComment.data = "This is a new comment";
+// }
+// console.log(updateComment);
+
+// adding new comment
+// connecting new comment to div parent dom
+// const newComment = document.createComment("I am currently floating in memory");
+// check if new comment is connected to DOM
+// console.log(newComment.isConnected);
+// append comment to div container
+// container.appendChild(newComment);
+// check if new comment is connected to DOM
+// console.log(newComment.isConnected);
+// newComment.remove();
+
+// checking nodevalue of comment
+// create new comment
+// const newComment = document.createComment("I am currently floating in memory");
+// // append new comment to div container 
+// container.appendChild(newComment);
+// // check nodevalue for nodevalue
+// console.log(newComment.nodeValue);
+
+// create new element
+const para = document.createElement("p");
+// add text in para
+para.textContent = "I am a new paragraph element";
+// append para to div container
+container.append(para);
+
+// add access key for div.display
+display.accessKey = "f";
+
+// practising classlist
+const el = document.querySelector(".display");
+el.classList.add("active");
+el.classList.add("highlight");
+// el.classList.add("active, highlight");
+el.classList.contains("active");
+el.classList.toggle("active")
+el.classList.replace("highlight", "fade");
+
+console.log(el.classList.length); //2
+console.log(el.classList.value); // display fade
+console.log(el.classList[0]);
+console.log(el.classList[1]); // fade //btw is "item" a standard word used for this or can any other word be used?
+console.log(el.classList[2]);
+console.log(el.classList.contains("active"));
+el.classList.toggle("active")
+console.log(el.classList.contains("active"));
+el.classList.toggle("active")
+console.log(el.classList.contains("fade"));
+
+// console.log(el.classList.forEach((item, index) => console.log(`Class: ${item}, Index: ${index}`)));
+el.classList.entries().forEach(([key, value]) => console.log(`Class: ${value}, Index: ${key}`));
+
+// create new node
+let newChildNode = document.createElement("span");
+// append childnode to div#container
+container.appendChild(newChildNode);//
+
+// create new node
+let newNode = document.createElement("section");
+// append to div#container
+container.append(newNode);
+
+//create new node
+let newInsertNode = document.createElement("my-div")
+// insert between span and section
+container.insertBefore(newInsertNode, newNode);
+
+//remove node
+container.removeChild(newNode)
+
+// create new element
+let testElement = document.createElement("div");
+// append to dom
+container.appendChild(testElement);
+// add class
+testElement.classList.add("class-one");
+// add test childnode
+let newChild = document.createElement("new-div");
+// append new child
+testElement.appendChild(newChild);
+// check for class attribute
+console.log(testElement.getAttribute("class"));
+// add class
+testElement.setAttribute("class", "class-two");
+testElement.setAttribute("class", "class-three");
+//remove attribute 
+testElement.removeAttribute("class");
+// check for class attibute
+console.log(testElement.getAttribute("class"));
+// add multiple classes
+testElement.setAttribute("class", "class-one class-two class-three")
+// add text content
+testElement.textContent = "This is new text";
+// output textcontent
+console.log(testElement.textContent)
+// add id
+testElement.setAttribute("id", "my-id")
+// check value of id
+console.log(testElement.getAttribute("id"));
+// check if id attribute is present
+console.log(testElement.hasAttribute("id"))
+// check if testElement has attributes
+console.log(testElement.hasAttributes());
+// change text font
+testElement.setAttribute("style", "font-size: 50px");
+//check font size
+console.log(testElement.style.fontSize);
+// add border
+testElement.style.border = "1px solid green";
+
+// create p element
+let textPara = document.createElement("p");
+// add text
+textPara.textContent = "Hey, I'm red"
+// make text red
+textPara.setAttribute("style", "color: red");
+// attach to dom
+testElement.appendChild(textPara);
+
+// create h3 element
+let textHeading = document.createElement("h3");
+// add text
+textHeading.textContent = "I'm a blue h3";
+// add color style
+textHeading.setAttribute("style", "color: blue");
+// attach to dom
+testElement.appendChild(textHeading);
+// add margin below
+testElement.style.margin = "50px 0";
+
+// create new div
+let newContainer = document.createElement("div");
+// add test text
+newContainer.textContent = "test"
+// attach newContainer
+testElement.after(newContainer);
+// add background and border
+newContainer.style.cssText = "background-color: pink; border: 1px solid black";
+// add internal div
+let innerDiv = document.createElement("h1");
+// add text
+innerDiv.textContent = "I'm in a div";
+// attach to dom
+testElement.append(innerDiv);
+
+// add inner p
+let innerPara = document.createElement("p");
+// add text
+innerPara.textContent = "ME TOO";
+// attach to dom
+testElement.append(innerPara);
+
+
+console.log(testElement.childNodes);
+
+
+console.log(nodes);
