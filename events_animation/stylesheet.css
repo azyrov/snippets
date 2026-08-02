@@ -1,0 +1,16 @@
+@keyframes slideAndColor {
+    0% {
+        left: 0px;
+        background-color: blue;
+    }
+
+    50% {
+        left: 200px;
+        background-color: yellow;
+    }
+
+    100% {
+        left: 0px;
+        background-color: green;
+    }
+}
