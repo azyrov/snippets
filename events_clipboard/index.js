@@ -7,8 +7,8 @@ div.textContent = "hello";
 //     console.error("Don't copy! Text is poisonous!")
 // })
 
-// // make div editable so the text can be cut and pasted into
-// div.contentEditable = true; 
+// make div editable so the text can be cut and pasted into
+div.contentEditable = true; 
 
 // // add event for when a text is cut
 // div.addEventListener("cut", function logMessage(e) {

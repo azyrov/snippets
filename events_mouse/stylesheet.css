@@ -1,0 +1,22 @@
+div {
+    /* background-color:rgb(246, 245, 245); */
+    border: 1px solid black;
+    margin: 1em;
+    padding: 1em;
+    display: inline-block;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+.in {
+    background-color: green;
+}
+
+.out {
+    background-color: blue;
+}
+
+p {
+    margin-bottom: 50px;
+    text-align:center;
+}

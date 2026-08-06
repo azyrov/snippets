@@ -7,9 +7,9 @@ container.style.padding = "10px";
 //     alert('Hey Nate. How\'s life?');
 // }
 
-// select button
+// // select button
 // let btn = document.querySelector("#btn");
-// add event listener
+// // add event listener
 // btn.addEventListener("click", function changeBGColor(e) {
 //     if (btn.style.backgroundColor !== "red") {
 //         btn.style.backgroundColor  = "red";
@@ -31,8 +31,8 @@ container.style.padding = "10px";
 //     })
 // })
 
-// select button
-let btn = document.querySelector("#btn");
+// // select button
+// let btn = document.querySelector("#btn");
 
 // event: before page prints
 // alert appears without pressing the button beforehand
@@ -266,3 +266,56 @@ container.appendChild(video);
 // video.addEventListener("waiting", function showMessage(e) {
 //     alert("Not enough video data loaded yet!")
 // })
+
+// add anchor
+let link = document.createElement("a");
+// add attribute
+link.href = "https://www.youtube.com/"
+// add innertext
+link.textContent = "Click to visit youtube"
+// attach to dom
+container.append(link);
+console.log(link.childNodes);
+// add btn
+let btn = document.querySelector("#btn");
+// add click event to btn
+btn.addEventListener("click", (e) => {
+    alert("Ze linke haz been cliked");
+    alert(e.cancelable);
+})
+
+
+///////////
+
+const outer = document.getElementById('outer');
+const middle = document.getElementById('middle');
+const inner = document.getElementById('inner');
+
+// --- CAPTURING PHASE LISTENERS (Going DOWN) ---
+
+outer.addEventListener('click', (e) => {
+  console.log('1. ⬇️ OUTER captured the event on the way down');
+}, { capture: true }); // capture: true makes this run on the way down
+
+middle.addEventListener('click', (e) => {
+  console.log('2. ⬇️ MIDDLE captured the event on the way down');
+}, { capture: true });
+
+
+// --- TARGET PHASE ---
+
+inner.addEventListener('click', (e) => {
+  console.log('3. 🎯 INNER button hit (Target Phase)');
+});
+
+
+// --- BUBBLING PHASE LISTENERS (Going UP - Default) ---
+
+middle.addEventListener('click', (e) => {
+  console.log('4. ⬆️ MIDDLE bubbled the event on the way up');
+}); // default is capture: false
+
+outer.addEventListener('click', (e) => {
+  console.log('5. ⬆️ OUTER bubbled the event on the way up');
+});
+

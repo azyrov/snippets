@@ -8,3 +8,4 @@ function removeGreeting() {
   } else if (document.getElementById("demo").innerHTML = "Hiya") {
     document.getElementById("demo").innerHTML = ""
   }
+}
