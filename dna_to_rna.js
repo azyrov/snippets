@@ -30,3 +30,39 @@ console.log(DNAtoRNA("GTaCATcGt"));
 // ELSE produces an error message
 // remove the commas to convert array to one string then return dnaArray to the DNAtoRNA
 
+// 2
+function DNAtoRNA(dna) {
+  // create a function which returns an RNA sequence from the given DNA sequence
+  let dnaUpperCase = dna.toUpperCase();
+  let dnaArray = dnaUpperCase.split("");
+  for (i = 0; i < dnaArray.length; i++) {
+    if (dnaArray[i] === "T") {
+      dnaArray[i] = "U";
+    } else if (dnaArray) {
+      dnaArray[i] = dnaArray[i];
+    } else {
+      console.log("error!");
+    }
+  }
+  return dnaArray.join("");
+}
+console.log(DNAtoRNA("GTaCATcGt"));
+
+// 3
+function DNAtoRNA(dna) {
+  // create a function which returns an RNA sequence from the given DNA sequence
+  let dnaUpperCase = dna.toUpperCase();
+  let dnaArray = dnaUpperCase.split("");
+  for (i = 0; i < dnaArray.length; i++) {
+    if (dnaArray[i] === ("G" || "C" || "A")) {
+      dnaArray[i];
+    } else if (dnaArray[i] === "T") {
+      dnaArray[i] = "U";
+    } else {
+      console.log("error!");
+    }
+  }
+  return dnaArray.join("");
+}
+console.log(DNAtoRNA("GTaCATcGt"));
+
