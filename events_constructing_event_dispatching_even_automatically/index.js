@@ -30,6 +30,12 @@ codeGeneratedBtn.addEventListener("click", (e) => {
 // let userGenClickEvent = new Event("click", {bubbles: false, cancelable: false})
 // userGeneratedBtn.dispatchEvent(userGenClickEvent);
 
+/********/
+// // USE THIS TO QUICKLY ADD A CUSTOM EVENT TO A USER-CREATED BUTTON
+// let event = new MouseEvent("click");
+// btnRock.dispatchEvent(event);
+/*******/
+
 let btnMouseEvent = document.createElement("button");
 btnMouseEvent.textContent = "My event is created with MouseEvent";
 container.append(btnMouseEvent);
