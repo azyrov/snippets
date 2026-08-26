@@ -265,28 +265,28 @@
 // console.log( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 
 
-let users = [
-  {id: 'john', name: "John Smith", age: 20},
-  {id: 'ann', name: "Ann Smith", age: 24},
-  {id: 'pete', name: "Pete Peterson", age: 31},
-];
+// let users = [
+//   {id: 'john', name: "John Smith", age: 20},
+//   {id: 'ann', name: "Ann Smith", age: 24},
+//   {id: 'pete', name: "Pete Peterson", age: 31},
+// ];
 
 
-let usersById = groupById(users);
-function groupById(arr) {
+// let usersById = groupById(users);
+// function groupById(arr) {
 
-    let obj = arr.reduce((accumulator, current) => {
-        accumulator[current.id] = {
-            id: current.id, 
-            name: current.name, 
-            age: current.age}
+//     let obj = arr.reduce((accumulator, current) => {
+//         accumulator[current.id] = {
+//             id: current.id, 
+//             name: current.name, 
+//             age: current.age}
 
-        return accumulator
-    }, {})
+//         return accumulator
+//     }, {})
 
-    return obj  
-}
-console.log(usersById);
+//     return obj  
+// }
+// console.log(usersById);
 
 /*
 // after the call we should have:
@@ -297,3 +297,37 @@ usersById = {
   pete: {id: 'pete', name: "Pete Peterson", age: 31},
 }
 */
+
+
+
+ function discountInventory(arr) {
+  const discount = 0.10;
+
+  return arr.map((item) => {
+    return {
+      id: item.id,
+      item: item.item,
+      price: item.price,
+      quantity: item.quantity,
+      discount: discount,
+      "discounted price": item.price * discount
+    }
+  
+  })
+ }
+
+ function stockAuditor(arr) {
+  
+ }
+
+const inventory = [
+  {id: 1, item: "Thor's Hammer", price: 400, quantity: 10},
+  {id: 2, item: "Iron Man's Suit", price: 200, quantity: 310},
+  {id: 3, item: "Cap's Shield", price: 50, quantity: 5},
+  {id: 4, item: "Black Widow's Gauntlets", price: 100, quantity: 150},
+  {id: 5, item: "Hawkeye's Bow", price: 300, quantity: 0}
+]
+
+ console.log(discountInventory(inventory))
+
+ 
