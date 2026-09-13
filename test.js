@@ -1,15 +1,15 @@
-const usersArray = [
-  { id: "u1", name: "Alice", role: "Admin" },
-  { id: "u2", name: "Bob", role: "User" }
-];
+// const usersArray = [
+//   { id: "u1", name: "Alice", role: "Admin" },
+//   { id: "u2", name: "Bob", role: "User" }
+// ];
 
-// Transforming an array into a key-value lookup map
-const userMap = usersArray.reduce((acc, curr) => {
-  acc[curr.id] = { name: curr.name, role: curr.role };
-  return acc; // You must return the accumulator for the next iteration
-}, {});
+// // Transforming an array into a key-value lookup map
+// const userMap = usersArray.reduce((acc, curr) => {
+//   acc[curr.id] = { name: curr.name, role: curr.role };
+//   return acc; // You must return the accumulator for the next iteration
+// }, {});
 
-console.log(userMap);
+// console.log(userMap);
 
 // let arr = [
 //     {id: "1", name: "John", age: 20},
@@ -25,3 +25,4 @@ console.log(userMap);
 // }, {}) 
 
 // console.log(obj)
+
