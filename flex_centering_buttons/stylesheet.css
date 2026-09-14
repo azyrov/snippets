@@ -1,0 +1,16 @@
+
+
+.grandparent {
+    border: 1px solid black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parent {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
