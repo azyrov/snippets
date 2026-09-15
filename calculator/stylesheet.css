@@ -1,0 +1,44 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.grandparent {
+    margin:0 2px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.parent {
+    margin: auto;
+    padding: 10px;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    flex-grow: 1; 
+    flex-shrink: 1;
+    flex-basis: calc((100% - 20px) / 3);
+    padding: 25px;
+}
+
+.grandparent_two {
+    margin:0 2px;
+    border: 1px solid black;
+    height: 50vh;
+}
+
+.parent_two {
+    border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+}
