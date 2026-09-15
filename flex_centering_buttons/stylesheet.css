@@ -9,8 +9,26 @@
 }
 
 .parent {
+    width: max-content;
     border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 50px;
+}
+
+
+.father {
+    border: 1px solid green;
+    display: flex;
+}
+
+.child {
+    width: max-content;
 }
