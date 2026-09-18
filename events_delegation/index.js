@@ -23,14 +23,20 @@ menu.addEventListener("click", (e) => {
     switch (e.target.id) {
         case "home":
             console.log("Home menu item was clicked")
+            console.log(e.target)
+            console.log(e.currentTarget)
             break;
         
         case "dashboard":
             console.log("Dashboard menu item was clicked")
+            console.log(e.target)
+            console.log(e.currentTarget)
             break;
 
         case "report":
             console.log("Report menu item was clicked")
+            console.log(e.target)
+            console.log(e.currentTarget)
             break;
     }
 })
