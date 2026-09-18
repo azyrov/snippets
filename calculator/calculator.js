@@ -8,7 +8,8 @@ let numTwo;
 let operator;
 
 const add = function(numOne, numTwo) {
-  return numOne + numTwo;
+  result = numOne + numTwo;
+  return result;
 };
 
 const subtract = function(numOne, numTwo) {
@@ -16,7 +17,8 @@ const subtract = function(numOne, numTwo) {
 };
 
 const multiply = function(numOne, numTwo) {
-  return numOne * numTwo;
+  result = numOne * numTwo;
+  return result;
 };
 
 const divide = function(numOne, numTwo) {
@@ -92,12 +94,25 @@ equalBtn.addEventListener("click", (e) => {
   console.log(`storedData: ${storedData}`);
   
   if (operator === `+`) {
-    result = numOne + numTwo;
+    add(numOne, numTwo);
   } else if (operator === '*') {
-    result = numOne * numTwo;
+    multiply(numOne, numTwo)
   }
 
   console.log(result);
+})
+
+clearBtn.addEventListener("click", (e) => {
+  numOne = undefined;
+  numTwo = undefined;
+  result = undefined;
+  
+  console.log(`
+    Numbers reset!!!
+
+    numOne = undefined;
+    numTwo = undefined;
+    result = undefined;`)
 })
 
 
