@@ -60,18 +60,50 @@ parent.addEventListener("click", (e) => {
     const buttonValue = e.target.value;
 
     storedData.push(buttonValue);
+
+    if (textField.value !== '+') {
+      textField.value = storedData.join("");
+    } else {
+      textField.value = e.target.value
+    }
   }
 })
 
 addBtn.addEventListener("click", (e) => {
-  console.log(storedData) 
-  numOne =  parseInt(storedData.join(""));
-  storedData.length = 0;
-  operator = '+';
+  console.log(storedData)
+
+  if (numOne === undefined) {
+    numOne = parseInt(storedData.join(""));
+    storedData.length = 0;
+    operator = '+';
+    console.log(`storedData.length: ${storedData.length}`);
+    console.log("here");
+
+  } else if (numOne !== undefined) {
+    if ((numTwo === undefined) && (operator === "")) {
+      operator = `+`;
+      console.log("there there");
+    } else {
+    numTwo =  parseInt(storedData.join(""));
+    storedData.length = 0;
+    operator = '+';
+    add(numOne, numTwo);
+    numOne = result;
+    result = undefined;
+    numTwo = undefined;
+    console.log(`storedData.length: ${storedData.length}`);
+    console.log("there");
+
+  }
+  }
+
   console.log(`numOne: ${numOne}`);
   console.log(`typeof (numOne): ${typeof (numOne)}`);
+  console.log(`numTwo: ${numTwo}`);
+  console.log(`typeof (numTwo): ${typeof (numTwo)}`);
   console.log(`storedData: ${storedData}`);
   console.log(`operator: ${operator}`)
+  console.log(`result: ${result}`)
 })
 
 multiplyBtn.addEventListener("click", (e) => {
@@ -81,6 +113,8 @@ multiplyBtn.addEventListener("click", (e) => {
   operator = '*';
   console.log(`numOne: ${numOne}`);
   console.log(`typeof (numOne): ${typeof (numOne)}`);
+  console.log(`numTwo: ${numTwo}`);
+  console.log(`typeof (numTwo): ${typeof (numTwo)}`);
   console.log(`storedData: ${storedData}`);
   console.log(`operator: ${operator}`)
 })
@@ -89,30 +123,49 @@ equalBtn.addEventListener("click", (e) => {
   console.log(storedData);
   numTwo = parseInt(storedData.join(""));
   storedData.length = 0;
+  // operator = `=`;
+  console.log("BEFORE EQUALS");
+  console.log(`numOne: ${numOne}`);
+  console.log(`typeof (numOne): ${typeof (numOne)}`);
   console.log(`numTwo: ${numTwo}`);
   console.log(`typeof (numTwo): ${typeof (numTwo)}`);
   console.log(`storedData: ${storedData}`);
+  console.log(`operator: ${operator}`)
+  console.log(`result: ${result}`)
   
   if (operator === `+`) {
     add(numOne, numTwo);
-  } else if (operator === '*') {
-    multiply(numOne, numTwo)
+    numOne = result;
+    result = undefined;
+    numTwo = undefined;
+    operator = ""; 
   }
-
-  console.log(result);
+  // else if (operator === '*') {
+    // multiply(numOne, numTwo)
+  // }
+  console.log("AFTER EQUALS");
+  console.log(`numOne: ${numOne}`);
+  console.log(`typeof (numOne): ${typeof (numOne)}`);
+  console.log(`numTwo: ${numTwo}`);
+  console.log(`typeof (numTwo): ${typeof (numTwo)}`);
+  console.log(`storedData: ${storedData}`);
+  console.log(`operator: ${operator}`)
+  console.log(`result: ${result}`)
 })
 
 clearBtn.addEventListener("click", (e) => {
   numOne = undefined;
   numTwo = undefined;
   result = undefined;
-  
+  storedData.length = 0;
+
   console.log(`
     Numbers reset!!!
 
     numOne = undefined;
     numTwo = undefined;
-    result = undefined;`)
+    result = undefined;
+    storedData: ${storedData}`)
 })
 
 
