@@ -64,7 +64,7 @@ parent.addEventListener("click", (e) => {
 // if inputted value is `+`, dont append it when you converting inputted text into a long string
 // this way, we keep only numbers
 //we dont even store the `+` value so it does not get the chance to become the target value
-if (textField.value !== '+') {
+if ((textField.value !== '+') || (textField.value !== '*')) {
       textField.value = storedData.join("");
     }
     // the default
@@ -155,11 +155,57 @@ addBtn.addEventListener("click", (e) => {
   console.log(`result: ${result}`)
 })
 
+// add single mult
+multiplyBtn.addEventListener("click", (e) => {
+  // logic for first number
+  if (numOne === undefined) {
+    numOne = parseInt(storedData.join(""));
+    storedData.length = 0;
+    operator = '*';
+    console.log(`numOne: ${numOne}`);
+    console.log(`typeof (numOne): ${typeof (numOne)}`);
+    console.log(`numTwo: ${numTwo}`);
+    console.log(`typeof (numTwo): ${typeof (numTwo)}`);
+    console.log(`storedData: ${storedData}`);
+    console.log(`operator: ${operator}`)
+    console.log(`result: ${result}`)
+    // logic for the second  number
+    // numOne is present
+    // numTwo is not
+  } else {
+      console.log(storedData)
+      console.log(`BEFORE`);
+      console.log(`numOne: ${numOne}`);
+      console.log(`numTwo: ${numTwo}`);
+      // when we parseInt `*` and `/`, the result is NaN
+      // we need to splice out the first element `*` before we convert storerdData to number type 
+      // we can parse and join `+` and `-` and result is number type
+      numTwo = parseInt(storedData.filter(item => !isNaN(item)).map(Number).join(""));
+      storedData.length = 0; 
+      multiply(numOne, numTwo);
+      numOne = result;
+      result = undefined;
+      numTwo = undefined;
+      
+
+      console.log(`AFTER`);
+      console.log(`numOne: ${numOne}`);
+      console.log(`typeof (numOne): ${typeof (numOne)}`);
+      console.log(`numTwo: ${numTwo}`);
+      console.log(`typeof (numTwo): ${typeof (numTwo)}`);
+      console.log(`storedData: ${storedData}`);
+      console.log(`operator: ${operator}`)
+      console.log(`result: ${result}`)
+  }
+
+
+})
+
 
 equalBtn.addEventListener("click", (e) => {
   console.log(storedData);
 
-  numTwo = parseInt(storedData.join(""));
+  numTwo = parseInt(storedData.filter(item => !isNaN(item)).map(Number).join(""));
   storedData.length = 0;
 
   console.log("BEFORE EQUALS");
@@ -178,6 +224,9 @@ equalBtn.addEventListener("click", (e) => {
     // we use numOne for tracking and display in the textField
     // quickly store result of the add operation in numOne
     numOne = result;
+  } else if(operator === `*`) {
+      multiply(numOne, numTwo);
+      numOne = result;
   }
 
   // reset the variables for the next operation
