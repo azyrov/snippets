@@ -10,8 +10,7 @@ outer.addEventListener('click', (e) => {
 
 middle.addEventListener('click', (e) => {
   console.log('2. ⬇️ MIDDLE captured the event on the way down');
-}, {capture: true}); // i intentionally added a video method which cannot possbly be triggered since we have no video/audio
-
+}, {capture: true});
 
 // --- TARGET PHASE ---
 
@@ -35,13 +34,21 @@ const textarea = document.querySelector("textarea");
 
 // Create a new event, allow bubbling, and provide any data you want to pass to the "detail" property
 const eventAwesome = new CustomEvent("awesome", {
-  bubbles: true,
-  detail: { text: () => textarea.value },
+  // custom events have bubbling set to false by default
+  // custom events need to have bubbling set to true for bubbling to occur
+
+  // bubbles: true,
+  detail: { text: () => `textarea.value: ${textarea.value}` },
 });
 // The form element listens for the custom "awesome" event and then consoles the output of the passed text() method
-form.addEventListener("awesome", (e) => console.log(e.detail.text()));
+form.addEventListener("awesome", (e) => {
+  console.log(e.detail.text());
+});
 // As the user types, the textarea inside the form dispatches/triggers the event to fire, using itself as the starting point
-textarea.addEventListener("input", (e) => e.target.dispatchEvent(eventAwesome));
+textarea.addEventListener("input", (e) => {
+  // e.stopPropagation();
+  e.target.dispatchEvent(eventAwesome);
+});
 
 
 // // add anchor
