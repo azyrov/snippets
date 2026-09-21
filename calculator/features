@@ -10,4 +10,7 @@ present features
 
 wishlist
 - operations with different operators in one operation
+    - we could attach a single event to the button container
+    - we use event target to apply chages to the button which is being targeted
 - add operations with decimals
+- add backspace button
