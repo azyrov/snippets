@@ -5,6 +5,8 @@ present features
 - mult operation with multiple operands
 - new add operation after using equal to
 - new mult operation afterusingg equal to 
+- subtract operation with two operands
+- subtract operation with multiple operands
 
 wishlist
 - operations with different operators in one operation

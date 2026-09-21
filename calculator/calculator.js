@@ -13,7 +13,8 @@ const add = function(numOne, numTwo) {
 };
 
 const subtract = function(numOne, numTwo) {
-	return numOne - numTwo;
+  result = numOne - numTwo;
+  return result;
 };
 
 const multiply = function(numOne, numTwo) {
@@ -45,7 +46,7 @@ let eightBtn = document.querySelector("#eightBtn");
 let nineBtn = document.querySelector("#nineBtn");
 let zeroBtn = document.querySelector("#zeroBtn");
 let addBtn = document.querySelector("#addBtn");
-let subtractBtn = document.querySelector("#subtratBtn");
+let subtractBtn = document.querySelector("#subtractBtn");
 let divideBtn = document.querySelector("#divideBtn");
 let multiplyBtn = document.querySelector("#multiplyBtn");
 let equalBtn = document.querySelector("#equalBtn"); 
@@ -72,7 +73,7 @@ parent.addEventListener("click", (e) => {
   this way, we keep only numbers
   we dont even store the `+` value so it does not get the chance to become the target value
 */
-if ((textField.value !== '+') || (textField.value !== '*')) {
+if ((textField.value !== '+') || (textField.value !== '*') || (textField.value !== `-`)) {
       textField.value = storedData.join("");
     }
 
@@ -228,11 +229,81 @@ multiplyBtn.addEventListener("click", (e) => {
           storedData.length = 0;
       }
     }
-  }
+  } else {
+      // this is a net to capture anything out of the norm
+      // we will add if-else condition to the above if segment if we need to handle edge cases
+      console.log("GENERAL ERROR");
+    }
 
-
+  console.log(`numOne: ${numOne}`);
+  console.log(`typeof (numOne): ${typeof (numOne)}`);
+  console.log(`numTwo: ${numTwo}`);
+  console.log(`typeof (numTwo): ${typeof (numTwo)}`);
+  console.log(`storedData: ${storedData}`);
+  console.log(`operator: ${operator}`)
+  console.log(`result: ${result}`)
 })
 
+
+// add subtract btn
+subtractBtn.addEventListener("click", (e) => {
+  if (numOne === undefined) {
+    numOne = parseInt(storedData.join(""));
+    storedData.length = 0;
+    operator = '-';
+    console.log(`storedData.length: ${storedData.length}`);
+    console.log(`numOne captured: ${numOne}`);
+  } else if (numOne !== undefined) {
+      if (operator !== "") {
+        console.log(storedData)
+        console.log(`BEFORE`);
+        console.log(`numOne: ${numOne}`);
+        console.log(`numTwo: ${numTwo}`);
+
+        numTwo = parseInt(storedData.filter(item => !isNaN(item)).map(Number).join(""));
+        storedData.length = 0; 
+        operator = '-';
+        subtract(numOne, numTwo);
+        numOne = result;
+        result = undefined;
+        numTwo = undefined;
+        
+        e.stopPropagation();
+        textField.value = numOne;
+
+        console.log(`AFTER`);
+        console.log(`numOne: ${numOne}`);
+        console.log(`typeof (numOne): ${typeof (numOne)}`);
+        console.log(`numTwo: ${numTwo}`);
+        console.log(`typeof (numTwo): ${typeof (numTwo)}`);
+        console.log(`storedData: ${storedData}`);
+        console.log(`operator: ${operator}`);
+        console.log(`result: ${result}`);
+      } else {
+          if (storedData.length === 0) {
+            operator = '-';
+            console.log(`mult after equal operation, no operation occurs here`)
+        } else if (storedData > 0) {
+            numOne = parseInt(storedData.join(""));
+            numTwo = undefined;
+            operator = `-`;
+            storedData.length = 0;
+        }
+      }
+  } else {
+      // this is a net to capture anything out of the norm
+      // we will add if-else condition to the above if segment if we need to handle edge cases
+      console.log("GENERAL ERROR");
+    }
+
+  console.log(`numOne: ${numOne}`);
+  console.log(`typeof (numOne): ${typeof (numOne)}`);
+  console.log(`numTwo: ${numTwo}`);
+  console.log(`typeof (numTwo): ${typeof (numTwo)}`);
+  console.log(`storedData: ${storedData}`);
+  console.log(`operator: ${operator}`)
+  console.log(`result: ${result}`)
+})
 
 equalBtn.addEventListener("click", (e) => {
   console.log(storedData);
@@ -259,8 +330,10 @@ equalBtn.addEventListener("click", (e) => {
   } else if(operator === `*`) {
       multiply(numOne, numTwo);
       numOne = result;
+  } else if(operator === `-`) {
+      subtract(numOne, numTwo);
+      numOne = result;
   }
-
   // reset the variables for the next operation
   result = undefined;
   numTwo = undefined;
