@@ -61,15 +61,27 @@ parent.addEventListener("click", (e) => {
 
     storedData.push(buttonValue);
 
-// if inputted value is `+`, dont append it when you converting inputted text into a long string
-// this way, we keep only numbers
-//we dont even store the `+` value so it does not get the chance to become the target value
+/*
+  if inputted value is `+`, dont append it when you converting inputted text into a long string
+  this way, we keep only numbers
+  we dont even store the `+` value so it does not get the chance to become the target value
+*/
+
+/*
+  if inputted value is `+`, dont append it when converting inputted text into a long string
+  this way, we keep only numbers
+  we dont even store the `+` value so it does not get the chance to become the target value
+*/
 if ((textField.value !== '+') || (textField.value !== '*')) {
       textField.value = storedData.join("");
     }
-    // the default
-    // show inputted value in text field if it is not `+`
-    // we will update this as we add more operators 
+
+/*
+  the default
+  show inputted value in text field if it is not `+`
+  we will update this as we add more operators 
+*/
+
     else {
       textField.value = e.target.value
     }
@@ -78,8 +90,10 @@ if ((textField.value !== '+') || (textField.value !== '*')) {
 
 addBtn.addEventListener("click", (e) => {
   console.log(storedData)
-// store the input as numOne if it is not already present
-// this captures the initial number
+  /*
+    store the input as numOne if it is not already present
+    this captures the initial number
+  */
   if (numOne === undefined) {
     numOne = parseInt(storedData.join(""));
     storedData.length = 0;
@@ -89,9 +103,11 @@ addBtn.addEventListener("click", (e) => {
 
     // use the else if to capture all other values
   }  else if (numOne !== undefined) {
-      // default
-      // this is used for when we are performing additions without using equalBtn
-      //equalBtn turns operator to ""
+      /*
+      default
+      this is used for when we are performing additions without using equalBtn
+      equalBtn turns operator to ""
+      */
       if (operator !== "") {
         // if numOne is already present with numTwo is not
         // we use this to capture the value for the initial sum with the first numOne
@@ -233,7 +249,7 @@ equalBtn.addEventListener("click", (e) => {
   result = undefined;
   numTwo = undefined;
 
-    // after an operation, operator is reset
+  // after an operation, operator is reset
   //we can then use an if condition within each operator to give the operator variable its value
   operator = ""; 
 
