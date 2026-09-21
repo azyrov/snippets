@@ -61,9 +61,15 @@ parent.addEventListener("click", (e) => {
 
     storedData.push(buttonValue);
 
+// if inputted value is `+`, dont append it when you converting inputted text into a long string
+// this way, we keep only numbers
+//we dont even store the `+` value so it does not get the chance to become the target value
 if (textField.value !== '+') {
       textField.value = storedData.join("");
     }
+    // the default
+    // show inputted value in text field if it is not `+`
+    // we will update this as we add more operators 
     else {
       textField.value = e.target.value
     }
@@ -72,20 +78,32 @@ if (textField.value !== '+') {
 
 addBtn.addEventListener("click", (e) => {
   console.log(storedData)
-
+// store the input as numOne if it is not already present
+// this captures the initial number
   if (numOne === undefined) {
     numOne = parseInt(storedData.join(""));
     storedData.length = 0;
     operator = '+';
     console.log(`storedData.length: ${storedData.length}`);
-    console.log("here");
+    console.log(`numOne captured: ${numOne}`);
 
+// use the else if to capture all other values
   } else if (numOne !== undefined) {
+    // if numOne is already present but numTwo is not (and operator is empty)
+    // we use this to capture values from the equalBtn which turns operator into an empty value
+    // we use this to force the process to do nothing + wait one step to receive a storedData value before moving on
+    // this is important since after the equal operation, we have numOne but no storedData to convert to numTwo
+    // as such, when we trigger the addBtn after an equal operation, we need to store `+` so when we input a value with storedData after, we can use the next addBtn trigger to perform the add operation with numOne and numTwo(from storedData)
+    // We gave the `+` operator the chance to receive a storedData and then use the next addButton trigger to perform the sum sice we now have numOne and numTwo  
       if ((numTwo === undefined) && (operator === "")) {
         operator = `+`;
         
-        console.log("there there");
+        console.log(`add after equal operation, no operation occurs here`);
       } else {
+        // default
+        // if numOne is already present with numTwo is not
+        // we use this to capture the value for the initial sum with the first numOne
+        // we also use this to capture value for summing new value with previous sum
           numTwo =  parseInt(storedData.join(""));
           storedData.length = 0;
           operator = '+';
@@ -94,15 +112,21 @@ addBtn.addEventListener("click", (e) => {
           result = undefined;
           numTwo = undefined;
 
+          // stop the bubbling to the parent
+          // by default, parent should have the textField.value of the button from e.target.value fom the parent's else condition
+          // default value for addBtn is `+` from the html
+          // stopPropagation() stops the parent fom receiving any data from the addBtn 
           e.stopPropagation();
+          // then we now provide an actual value for the parent since we sopped it from getting one
           textField.value = numOne;
 
           console.log(`storedData.length: ${storedData.length}`);
-          console.log("there");
+          console.log(`added value to numOne`);
         }
     } else {
-      e.stopPropagation();
-      textField.value = NaN;
+      // this is a net to capture anything out of the norm
+      // we will add if-else condition to the above if segment if we need to handle edge cases
+      console.log("GENERAL ERROR");
     }
 
   console.log(`numOne: ${numOne}`);
@@ -114,18 +138,6 @@ addBtn.addEventListener("click", (e) => {
   console.log(`result: ${result}`)
 })
 
-multiplyBtn.addEventListener("click", (e) => {
-  console.log(storedData) 
-  numOne =  parseInt(storedData.join(""));
-  storedData.length = 0;
-  operator = '*';
-  console.log(`numOne: ${numOne}`);
-  console.log(`typeof (numOne): ${typeof (numOne)}`);
-  console.log(`numTwo: ${numTwo}`);
-  console.log(`typeof (numTwo): ${typeof (numTwo)}`);
-  console.log(`storedData: ${storedData}`);
-  console.log(`operator: ${operator}`)
-})
 
 equalBtn.addEventListener("click", (e) => {
   console.log(storedData);
@@ -143,15 +155,27 @@ equalBtn.addEventListener("click", (e) => {
   console.log(`result: ${result}`)
   console.log(`e.target.value: ${e.target.value}`)
   
+  // perform sum if operator is `+`
   if (operator === `+`) {
     add(numOne, numTwo);
+    // we use numOne for tracking and display in the textField
+    // quickly store result of the add operation in numOne
     numOne = result;
   }
 
+  // reset the variables for the next operation
   result = undefined;
   numTwo = undefined;
+
+    // after an operation, operator is reset
+  //we can then use an if condition within each operator to give the operator variable its value
   operator = ""; 
 
+  // stop the bubbling to the parent
+  // by default, parent should have the textField.value of the button from e.target.value fom the parent's else condition
+  // default value for equalBtn is empty from the html since the button wasnot given a value
+  // stopPropagation() stops the parent fom receiving any data from the addBtn 
+  // we give the textField.value numOne
   e.stopPropagation();
   textField.value = numOne;
   
