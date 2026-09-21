@@ -2,9 +2,10 @@ present features
 - add operation with two operands
 - add operation with multiple operands
 - mult operation with one operand
-- mult opertion with multiple operands
+- mult operation with multiple operands
 - new add operation after using equal to
 - new mult operation afterusingg equal to 
 
 wishlist
 - operations with different operators in one operation
+- add operations with decimals

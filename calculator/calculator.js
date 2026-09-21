@@ -188,30 +188,46 @@ multiplyBtn.addEventListener("click", (e) => {
     // logic for the second  number
     // numOne is present
     // numTwo is not
-  } else {
-      console.log(storedData)
-      console.log(`BEFORE`);
-      console.log(`numOne: ${numOne}`);
-      console.log(`numTwo: ${numTwo}`);
-      // when we parseInt `*` and `/`, the result is NaN
-      // we need to splice out the first element `*` before we convert storerdData to number type 
-      // we can parse and join `+` and `-` and result is number type
-      numTwo = parseInt(storedData.filter(item => !isNaN(item)).map(Number).join(""));
-      storedData.length = 0; 
-      multiply(numOne, numTwo);
-      numOne = result;
-      result = undefined;
-      numTwo = undefined;
-      
+  } else if(numOne !== undefined) {
+      if (operator !== "") {
 
-      console.log(`AFTER`);
-      console.log(`numOne: ${numOne}`);
-      console.log(`typeof (numOne): ${typeof (numOne)}`);
-      console.log(`numTwo: ${numTwo}`);
-      console.log(`typeof (numTwo): ${typeof (numTwo)}`);
-      console.log(`storedData: ${storedData}`);
-      console.log(`operator: ${operator}`)
-      console.log(`result: ${result}`)
+        console.log(storedData)
+        console.log(`BEFORE`);
+        console.log(`numOne: ${numOne}`);
+        console.log(`numTwo: ${numTwo}`);
+        // when we parseInt `*` and `/`, the result is NaN
+        // we need to splice out the first element `*` before we convert storerdData to number type 
+        // we can parse and join `+` and `-` and result is number type
+        numTwo = parseInt(storedData.filter(item => !isNaN(item)).map(Number).join(""));
+        storedData.length = 0; 
+        operator = '*';
+        multiply(numOne, numTwo);
+        numOne = result;
+        result = undefined;
+        numTwo = undefined;
+        
+        e.stopPropagation();
+        textField.value = numOne;
+        
+        console.log(`AFTER`);
+        console.log(`numOne: ${numOne}`);
+        console.log(`typeof (numOne): ${typeof (numOne)}`);
+        console.log(`numTwo: ${numTwo}`);
+        console.log(`typeof (numTwo): ${typeof (numTwo)}`);
+        console.log(`storedData: ${storedData}`);
+        console.log(`operator: ${operator}`)
+        console.log(`result: ${result}`)
+    } else {
+      if (storedData.length === 0) {
+        operator = '*';
+        console.log(`mult after equal operation, no operation occurs here`)
+      } else if (storedData > 0) {
+          numOne = parseInt(storedData.join(""));
+          numTwo = undefined;
+          operator = `*`;
+          storedData.length = 0;
+      }
+    }
   }
 
 
