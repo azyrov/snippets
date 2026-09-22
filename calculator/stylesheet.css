@@ -37,3 +37,8 @@ button {
     height: 50px;
     width: 50%;
 }
+
+.active {
+    background-color: green;
+    opacity: 0.9;
+}

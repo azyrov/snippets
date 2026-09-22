@@ -1,12 +1,3 @@
-// store first button press as numOne
-// store second button press as operator
-// store third button press as numTwo
-// operator calls a function / functions which takes uses the operator on numOne and numTwo
-
-let numOne;
-let numTwo;
-let operator;
-
 const add = function(numOne, numTwo) {
   result = numOne + numTwo;
   return result;
@@ -36,6 +27,7 @@ const operate = function(operator, numOne, numTwo) {
   }
 }
 
+let parent = document.querySelector(".parent");
 let oneBtn = document.querySelector("#oneBtn");
 let twoBtn = document.querySelector("#twoBtn");
 let threeBtn = document.querySelector("#threeBtn");
@@ -52,7 +44,11 @@ let divideBtn = document.querySelector("#divideBtn");
 let multiplyBtn = document.querySelector("#multiplyBtn");
 let equalBtn = document.querySelector("#equalBtn"); 
 let clearBtn = document.querySelector("#clearBtn"); 
-let textField = document.querySelector("#textField")
+let textField = document.querySelector("#textField");
+
+let numOne = undefined;
+let numTwo = undefined;
+let operator;
 let storedData = [];
 let result;
 
@@ -64,7 +60,7 @@ let result;
 parent.addEventListener("click", (e) => {
   // only areas in parent with a "button" element ancestor is triggered
   const button = e.target.closest("button");
-  // if the clicked area does not havea button ancestor, it returns nothin or basically, nothing happens
+  // if the clicked area does not havea button ancestor, it returns nothing or basically, nothing happens
   if (!(button)) return;
 
   const value = button.dataset.value;
@@ -79,12 +75,33 @@ parent.addEventListener("click", (e) => {
     // inputted values appear as numbers
     textField.value = parseInt(storedData.join(""));
 
+    /* ADD */
+    if (numTwo === undefined) {
+      numOne = parseInt(storedData.join(""));
+      console.log(`numOne: ${numOne}`)
+    } 
+
+
+    // remove the styling from the add button when any button is triggered
+    if (addBtn.classList.contains(`active`)) {
+      addBtn.classList.remove(`active`);
+    }
+
     /* TEST LOGS */
      // logs numbers
     console.log(`${typeof parseInt(storedData.join(""))}`);
      // logs strings
     console.log(`${typeof textField.value}`)
+  } else {
+      if (true) {
+        button.classList.add('active');
+      }
   }
+
+  // if ((`[data-value = `+`]`).classList.contains(`active`)) {
+  //   button.classList.remove('active');
+  // }
+
 })
 
 
