@@ -1,0 +1,35 @@
+#grandparent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+
+#parent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button[data-value = "text"] {
+    height: 10rem;
+    width: 50rem;
+    border-radius: 40px;
+    font-size: 1rem;
+    border: 10px solid red;
+}
+
+.background-color {
+    background-color: yellow;
+    border: 50px solid green;
+}
+
+.font-size {
+    font-size: 5rem;
+}
+
+.border {
+    border: 1ps solid blue;
+}
