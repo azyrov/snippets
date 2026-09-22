@@ -62,9 +62,28 @@ let result;
 // trigger different result based on child button triggered
 
 parent.addEventListener("click", (e) => {
+  // only areas in parent with a "button" element ancestor is triggered
   const button = e.target.closest("button");
+  // if the clicked area does not havea button ancestor, it returns nothin or basically, nothing happens
   if (!(button)) return;
 
-  alert(button.dataset.value)
+  const value = button.dataset.value;
+
+  // store button input in storedData
+  // storing only numbers
+  // we will get the valus of the ymbols directly from their data-value
+  if (!(isNaN(value))) {
+    storedData.push(value);
+    console.log(storedData)
+    
+    // inputted values appear as numbers
+    textField.value = parseInt(storedData.join(""));
+
+    /* TEST LOGS */
+     // logs numbers
+    console.log(`${typeof parseInt(storedData.join(""))}`);
+     // logs strings
+    console.log(`${typeof textField.value}`)
+  }
 })
 
