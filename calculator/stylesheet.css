@@ -34,11 +34,40 @@ button {
 }
 
 #textField {
+    font-size: 1rem;
     height: 50px;
     width: 50%;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 0.5rem;
+}
+
+button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border:1px solid black;
+    border-radius: 20px;
 }
 
 .active {
     background-color: green;
     opacity: 0.9;
 }
+
+/* 
+i need for the = and CLR buttons to be only active during the clicking
+i have decided to add animation instead of js since:
+- i cant add a mouseover within the existing clickevent
+- i simply need the buttons to change state for a second or so while active 
+*/
+
+@keyframes backgroundColorChange {
+    0% {
+        background-color: normal;
+    }
+    100% {
+        background-color: green;
+    }
+}
+

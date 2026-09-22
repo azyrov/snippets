@@ -45,6 +45,10 @@ let multiplyBtn = document.querySelector("#multiplyBtn");
 let equalBtn = document.querySelector("#equalBtn"); 
 let clearBtn = document.querySelector("#clearBtn"); 
 let textField = document.querySelector("#textField");
+// select symbols btns (minus equalBtn and clearBtn) 
+let symbolsMain = document.querySelectorAll("#addBtn, #subtractBtn, #divideBtn, #multiplyBtn");
+// selects equalBtn and clearBtn 
+let symbolsSecondary = document.querySelectorAll("#equalBtn, #clearBtn");
 
 let numOne = undefined;
 let numTwo = undefined;
@@ -78,14 +82,16 @@ parent.addEventListener("click", (e) => {
     /* ADD */
     if (numTwo === undefined) {
       numOne = parseInt(storedData.join(""));
-      console.log(`numOne: ${numOne}`)
     } 
 
 
-    // remove the styling from the add button when any button is triggered
-    if (addBtn.classList.contains(`active`)) {
-      addBtn.classList.remove(`active`);
-    }
+    /* STYLING */
+    // remove the styling from the symbol buttons when any button is triggered
+    symbolsMain.forEach(item => {
+      if(item.classList.contains('active')) {
+        item.classList.remove(`active`);
+      }
+    })
 
     /* TEST LOGS */
      // logs numbers
@@ -93,15 +99,20 @@ parent.addEventListener("click", (e) => {
      // logs strings
     console.log(`${typeof textField.value}`)
   } else {
-      if (true) {
-        button.classList.add('active');
-      }
+    // remove styling for symbol buttons if it already exists
+      symbolsMain.forEach(item => {
+        if(item.classList.contains('active')) {
+          item.classList.remove(`active`);
+          // test log
+          console.log("No color for you!");
+        }
+      });
+
+      // add styling for the symbol button being pressed
+      button.classList.add('active');
+      // test log
+      console.log("I got color!");
   }
-
-  // if ((`[data-value = `+`]`).classList.contains(`active`)) {
-  //   button.classList.remove('active');
-  // }
-
 })
 
 
