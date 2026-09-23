@@ -7,10 +7,9 @@ present features
 - new mult operation afterusingg equal to 
 - subtract operation with two operands
 - subtract operation with multiple operands
+- operations with different operators in one operation
 
 wishlist
-- operations with different operators in one operation
-    - we could attach a single event to the button container
-    - we use event target to apply chages to the button which is being targeted
+- fix app crashing when symbol is triggered when 2nd operand (numTwo) is not given
 - add operations with decimals
 - add backspace button
