@@ -79,10 +79,16 @@ parent.addEventListener("click", (e) => {
     // inputted values appear as numbers
     textField.value = parseInt(storedData.join(""));
 
-    /* ADD */
-    if (numTwo === undefined) {
+    /* INITIAL OPERATION */
+    if (operator === undefined) {
       numOne = parseInt(storedData.join(""));
-    } 
+
+    /* SUBSEQUENT OPERATIONS */
+    } else {
+        numTwo = parseInt(storedData.join(""));
+        // reset operator
+        operator = `+`;
+    }
 
 
     /* STYLING */
@@ -94,24 +100,38 @@ parent.addEventListener("click", (e) => {
     })
 
     /* TEST LOGS */
-     // logs numbers
-    console.log(`${typeof parseInt(storedData.join(""))}`);
-     // logs strings
-    console.log(`${typeof textField.value}`)
+     console.log(`numOne: ${numOne}`);
+     console.log(`numTwo: ${numTwo}`);
+     console.log(`storedData: ${storedData}`);
+     console.log(`operator: ${operator}`);
   } else {
     // remove styling for symbol buttons if it already exists
       symbolsMain.forEach(item => {
         if(item.classList.contains('active')) {
           item.classList.remove(`active`);
-          // test log
-          console.log("No color for you!");
         }
       });
 
       // add styling for the symbol button being pressed
       button.classList.add('active');
-      // test log
-      console.log("I got color!");
+
+      if (numTwo === undefined) {
+        /* resets */
+        storedData = [];
+        operator = `+`;
+      }
+
+      if ((numOne !== undefined) && (numTwo !== undefined)) 
+      if (value === `+`) {
+        add(numOne, numTwo);
+      }
+
+      /* TEST LOGS */
+      console.log(`numOne: ${numOne}`);
+      console.log(`numTwo: ${numTwo}`);
+      console.log(`storedData: ${storedData}`);
+      console.log(`operator: ${operator}`);
+
   }
 })
 
