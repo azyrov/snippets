@@ -10,6 +10,6 @@ present features
 - operations with different operators in one operation
 
 wishlist
-- stop app fromcraching when a symbol input is done before an operation is complete
+- stop app from crashing when a symbol input is done before an operation is complete
 - add operations with decimals
 - add backspace button
