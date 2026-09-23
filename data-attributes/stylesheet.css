@@ -22,3 +22,7 @@ button {
     font-size: 3rem;
     border-radius: 50px;
 }
+
+.active {
+    background-color: green;
+}
